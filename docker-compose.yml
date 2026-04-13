@@ -1,0 +1,15 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=development
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "3000:3000"
+    command: ["nginx", "-g", "daemon off;"]
