@@ -9,7 +9,10 @@ services:
       - ENV=development
 
   frontend:
-    image: nginx:alpine
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    command: ["nginx", "-g", "daemon off;"]
+      - "3000:80"
+    environment:
+      - API_BASE_URL=http://localhost:8000
