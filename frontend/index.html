@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Tracker PRO</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container">
+      <h1>Time Tracker PRO</h1>
+      <p class="subtitle">Capture your daily work and see the team&apos;s activity at a glance.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" aria-labelledby="time-entry-form-heading">
+      <div class="card-header">
+        <h2 id="time-entry-form-heading">Add or edit a time entry</h2>
+      </div>
+      <div class="card-body">
+        <form id="timeEntryForm" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="userName">Name</label>
+              <input type="text" id="userName" name="userName" required />
+            </div>
+
+            <div class="form-field">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+
+            <div class="form-field full-width">
+              <label for="activityDescription">Activity Description</label>
+              <textarea id="activityDescription" name="activityDescription" rows="3" required></textarea>
+            </div>
+
+            <div class="form-field">
+              <label for="hours">Hours</label>
+              <input type="number" id="hours" name="hours" min="0" step="0.25" required />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submitButton">Add Entry</button>
+            <button type="button" id="cancelEditButton" class="secondary" hidden>Cancel edit</button>
+          </div>
+        </form>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="entries-heading">
+      <div class="card-header">
+        <h2 id="entries-heading">Team time entries</h2>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table class="entries-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Activity</th>
+                <th scope="col">Hours</th>
+                <th scope="col">Updated</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="entries">
+              <tr>
+                <td colspan="6" class="empty">Loading entries...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.API_BASE_URL = window.API_BASE_URL || "http://localhost:8000";
+  </script>
+  <script src="/app.js"></script>
+</body>
+</html>
